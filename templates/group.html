@@ -10,7 +10,7 @@
         <table id="" style="width:100%"><tbody>
     {% for row in result %}
             <ol>
-                <li><a href="{{url_for('student')}}"> {{row.Group_id}}</a></li>
+                <li><a href="{{url_for('student')}}">Group {{row.Group_id}}</a></li>
             </ol>
 
     {% endfor %}
