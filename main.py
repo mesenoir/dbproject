@@ -31,6 +31,10 @@ class Database:
 def auth():
     return render_template("home.html")
 
+@app.route('/preview')
+def preview():
+    return render_template("preview.html")
+
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
     def db_query(name,pas):
@@ -42,7 +46,7 @@ def login():
         password = request.form["password"]
         res = db_query(user,password)
         if res:
-            return redirect(url_for("product"))
+            return redirect(url_for("preview"))
         else:
             return "<h1>WRONG</h1>"
     else:
