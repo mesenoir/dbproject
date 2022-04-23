@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+</head>
+<body>
+    {% if result %}
+        <table id="" style="width:100%"><tbody><tr>
+            <th>name</th>
+            <th>product_image</th>
+            <tr>
+
+    {% for row in result %}
+        <tr>
+            <td>{{row.name}}</td>
+            <td>{{row.product_image}}</td>
+        </tr>
+
+    {% endfor %}
+        </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
