@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Subjects</title>
+    <title>Groups</title>
 </head>
 <body>
+    <h1>Groups:</h1>
     {% if result %}
         <table id="" style="width:100%"><tbody>
     {% for row in result %}
             <ol>
-                <li><a href="{{url_for('group')}}"> {{row.Subject_id}} - {{row.Name}}</a></li>
+                <li><a href="{{url_for('student')}}"> {{row.Group_id}}</a></li>
             </ol>
 
     {% endfor %}
         </tbody>
         </table>
     {% endif %}
-
 </body>
 </html>

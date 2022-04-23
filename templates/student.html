@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Subjects</title>
+    <title>Student</title>
 </head>
 <body>
-    {% if result %}
+<h1>Students</h1>
+{% if result %}
         <table id="" style="width:100%"><tbody>
     {% for row in result %}
             <ol>
-                <li><a href="{{url_for('group')}}"> {{row.Subject_id}} - {{row.Name}}</a></li>
+                <li>{{row.Student_id}} - {{row.Name}}</li>
             </ol>
-
     {% endfor %}
         </tbody>
         </table>
     {% endif %}
-
 </body>
 </html>

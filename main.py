@@ -9,16 +9,20 @@ class Database:
         host = "localhost"
         user = "root"
         password = "password"
-        db = "test"
+        db = "dbproject"
         self.con = pymysql.connect(host = host, user = user, password = password, db = db, cursorclass = pymysql.cursors.DictCursor)
         self.cur = self.con.cursor()
     def list_products(self):
-        self.cur.execute("SELECT name, product_image from products;")
+        self.cur.execute("SELECT * from Subjects;")
         result = self.cur.fetchall()
         return result
 
     def get_login(self, name, pas):
-        self.cur.execute(f"select * from Techers where Name='{name}' and Password='{pas}';")
+        self.cur.execute(f"select * from Students where Name='{name}' and Pass='{pas}';")
+        result = self.cur.fetchall()
+        return result
+    def list_student(self):
+        self.cur.execute("select * from Students;")
         result = self.cur.fetchall()
         return result
 
@@ -61,6 +65,24 @@ def product():
         return product
     res = db_query()
     return render_template("product.html" , result = res)
+
+@app.route('/group')
+def group():
+    def db_query():
+        db = Database()
+        product = db.list_products()
+        return product
+    res = db_query()
+    return render_template("group.html", result = res)
+
+@app.route('/student')
+def student():
+    def db_query():
+        db = Database()
+        product = db.list_student()
+        return product
+    res = db_query()
+    return render_template("student.html", result =res)
 
 if __name__ == '__main__':
    app.run(debug = True)
