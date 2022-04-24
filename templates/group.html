@@ -1,19 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <head>
     <meta charset="UTF-8">
     <title>Groups</title>
+    <style>
+        h1 {text-align: center;}
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th{
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        * {box-sizing: border-box;}
+
+        body {
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+          overflow: hidden;
+          background-color: #e9e9e9;
+        }
+
+        .topnav a {
+          float: left;
+          display: block;
+          color: black;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+
+        .topnav a.active {
+          background-color: #2196F3;
+          color: white;
+        }
+
+        .topnav .search-container {
+          float: right;
+        }
+
+        .topnav input[type=text] {
+          padding: 6px;
+          margin-top: 8px;
+          font-size: 17px;
+          border: none;
+        }
+
+        .topnav .search-container button {
+          float: right;
+          padding: 6px 10px;
+          margin-top: 8px;
+          margin-right: 16px;
+          background: #ddd;
+          font-size: 17px;
+          border: none;
+          cursor: pointer;
+        }
+
+        .topnav .search-container button:hover {
+          background: #ccc;
+        }
+
+        @media screen and (max-width: 600px) {
+          .topnav .search-container {
+            float: none;
+          }
+          .topnav a, .topnav input[type=text], .topnav .search-container button {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+          }
+          .topnav input[type=text] {
+            border: 1px solid #ccc;
+          }
+        }
+</style>
 </head>
+<body>
+    <div class="topnav">
+      <a class="active" href="preview">Home</a>
+      <a href="about">About</a>
+      <a href="contact">Contact</a>
+      <div class="search-container">
+        <form action="/student" method="GET">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search.." name="q">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </div>
 <body>
     <h1>Groups:</h1>
     {% if result %}
         <table id="" style="width:100%"><tbody>
-    {% for row in result %}
-            <ol>
-                <li><a href="{{url_for('student')}}">Group {{row.Group_id}}</a></li>
-            </ol>
 
+    <ol>
+    {% for row in result %}
+        <li><a href="{{url_for('students', variable=row.Year, variable1=row.Group_id)}}">Year {{row.Year}} - Group {{row.Group_id}}</a></li>
     {% endfor %}
+    </ol>
         </tbody>
         </table>
     {% endif %}

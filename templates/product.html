@@ -7,12 +7,11 @@
 <body>
     {% if result %}
         <table id="" style="width:100%"><tbody>
+        <ol>
     {% for row in result %}
-            <ol>
-                <li><a href="{{url_for('group')}}"> {{row.Subject_id}} - {{row.Name}}</a></li>
-            </ol>
-
+                <li><a href="{{url_for('groups', variable = row.Year)}}"> {{row.Subject_id}} - {{row.Name}} - {{row.Year}}</a></li>
     {% endfor %}
+            </ol>
         </tbody>
         </table>
     {% endif %}

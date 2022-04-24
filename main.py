@@ -13,6 +13,16 @@ class Database:
         self.con = pymysql.connect(host = host, user = user, password = password, db = db, cursorclass = pymysql.cursors.DictCursor)
         self.cur = self.con.cursor()
     def list_products(self):
+        self.cur.execute("SELECT * from Year;")
+        result = self.cur.fetchall()
+        return result
+
+    def list_groups(self, variable):
+        self.cur.execute(f"SELECT * from Year where Year = {variable};")
+        result = self.cur.fetchall()
+        return result
+
+    def list_subjects(self):
         self.cur.execute("SELECT * from Subjects;")
         result = self.cur.fetchall()
         return result
@@ -36,6 +46,11 @@ class Database:
             result = self.cur.fetchall()
         return result
 
+    def list_students(self,variable, variable1):
+        self.cur.execute(f"select * from Students where Year = {variable} and Group_id = {variable1}")
+        result = self.cur.fetchall()
+        return result
+
 
 @app.route('/')
 def auth():
@@ -44,6 +59,10 @@ def auth():
 @app.route('/preview')
 def preview():
     return render_template("preview.html")
+
+@app.route('/contact')
+def contact():
+    return render_template("contact.html")
 
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
@@ -71,11 +90,11 @@ def user(usr):
 def home():
     return render_template("home.html")
 
-@app.route('/product')
+@app.route('/subject')
 def product():
     def db_query():
         db = Database()
-        product = db.list_products()
+        product = db.list_subjects()
         return product
     res = db_query()
     return render_template("product.html" , result = res)
@@ -96,7 +115,25 @@ def student():
         product = db.list_student()
         return product
     res = db_query()
+    return render_template("student.html", result=res)
+
+@app.route('/students/<variable>/<variable1>', methods=['GET','POST'])
+def students(variable, variable1):
+    def db_query():
+        db = Database()
+        product = db.list_students(variable, variable1)
+        return product
+    res = db_query()
     return render_template("student.html", result =res)
+
+@app.route('/groups/<variable>', methods=['GET','POST'])
+def groups(variable):
+    def db_query():
+        db = Database()
+        product = db.list_groups(variable)
+        return product
+    res = db_query()
+    return render_template("group.html", result =res)
 
 if __name__ == '__main__':
    app.run(debug = True)
