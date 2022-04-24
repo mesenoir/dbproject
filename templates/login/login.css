@@ -14,18 +14,21 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #0099ee;
+    background: rgba(0, 106, 255, 0.565);
     text-align: center;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .box h1 {
+    font-size: 3rem;
     color: white;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .box input[type="text"],
 .box input[type="password"] {
+    font-size: 1.2rem;
     border: 0;
     background: none;
     display: block;
@@ -51,6 +54,7 @@ body {
 
 .box input[type="submit"] {
     border: 0;
+    font-size: 1.2rem;
     background: none;
     display: block;
     margin: 20px auto;
