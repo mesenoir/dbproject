@@ -1,31 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <link rel="stylesheet" href="style.css">
-    <title>Contact</title>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+.myLink {display: none}
+</style>
 </head>
+<body class="w3-light-grey">
 
-<body>
-    <div class="container">
-        <form>
-            <h1><span>C</span>ontact <span>U</span>s <span>F</span>orm</h1>
-            <input type="text" id="firstNamr" placeholder="First Name" required>
-            <input type="text" id="lastName" placeholder="Last Name" requested>
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="number" id="mobile" placeholder="Mobile" required>
-            <h4>Type Your Message Here...</h4>
-            <textarea required></textarea>
-            <input type="submit" value="Send" id="button">
+<!-- Navigation Bar -->
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge">
+  <a href="preview" class="w3-bar-item w3-button w3-text-green w3-hover-green"><b><i class="fa fa-map-marker w3-margin-right"></i>Home</b></a>
+  <a href="#" class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey"><i class="fa fa-search"></i></a>
+</div>
 
-        </form>
-    </div>
+<!-- Page content -->
+<div class="w3-content" style="max-width:1100px;">
+
+  <!-- Contact -->
+  <div class="w3-container">
+    <h2>Contact</h2>
+    <p>Let us book your next trip!</p>
+    <i class="fa fa-map-marker" style="width:30px"></i> Tashkent, Uzbekistan<br>
+    <i class="fa fa-envelope" style="width:30px"> </i> Email: mesenoir@gmail.com<br>
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required name="Message"></p>
+      <p><button class="w3-button w3-black w3-padding-large" type="submit">SEND MESSAGE</button></p>
+    </form>
+  </div>
+
+<!-- End page content -->
+</div>
+
 </body>
-<!-- is it working -->
-
 </html>

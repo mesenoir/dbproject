@@ -2,7 +2,7 @@
 <html lang="en">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -20,7 +20,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
 </style>
     <meta charset="UTF-8">
-    <title>Student</title>
+    <title>Subjects</title>
+    <meta charset="UTF-8">
+    <title>Grade</title>
     <style>
         h1 {text-align: center;}
         table {
@@ -124,45 +126,44 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a href="http://127.0.0.1:5000/about" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About us</a>
   </div>
 
-    <div class="topnav">
-      <div class="search-container">
-        <form action="/student" method="GET">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search.." name="q">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-      </div>
-    </div>
-
-    <div class="w3-container">
-  <hr>
-  <div class="w3-center">
-    <h2>Students</h2>
-  </div>
-<div class="w3-responsive w3-card-4">
-<table class="w3-table w3-striped w3-bordered">
-<thead>
-<tr class="w3-theme">
-  <th>ID</th>
-  <th>NAME</th>
-    <th>YEAR</th>
-  <th>GROUP</th>
-</tr>
-</thead>
-
-<tbody>
-
     {% if result %}
-        {% for row in result %}
+            <div class="w3-container">
+      <hr>
+      <div class="w3-center">
+      </div>
+    <div class="w3-responsive w3-card-4">
+    <table class="w3-table w3-striped w3-bordered">
+    <thead>
+    <tr class="w3-theme">
+      <th>STUDENT_ID</th>
+      <th>TEACHER_ID</th>
+      <th>SUBJECT</th>
+        <th>GRADE</th>
+    </tr>
+    </thead>
 
+        {% for row in result %}
+                <div class="topnav">
+                  <div class="search-container">
+                    <form action="/grade/{{row.Student_id}}" method="GET">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Search.." name="q">
+                      <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                  </div>
+                </div>
+                <div style="padding-left:16px">
+                </div>
+                <h1>Grades</h1>
             <tr>
-                <td><a href="{{url_for('grade', variable = row.Student_id)}}"> {{row.Student_id}}</a></td>
-                <td><a href="{{url_for('grade', variable = row.Student_id)}}"> {{row.Name}}</a></td>
-                <td><a href="{{url_for('grade', variable = row.Student_id)}}"> {{row.Year}}</a></td>
-                <td><a href="{{url_for('grade', variable = row.Student_id)}}"> {{row.Group_id}}</a></td>
+                <td>{{row.Student_id}}</td>
+                <td>{{row.Teacher_id}}</td>
+                <td>{{row.Subject_name}}</td>
+                <td>{{row.Grade}}</td>
             </tr>
         {% endfor %}
-            </tbody>
-            </table>
+            {% else %}
+                <h1>Grades</h1>
+                <h2>Nothing found</h2>
         {% endif %}
 </body>
 </html>

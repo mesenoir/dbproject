@@ -46,7 +46,22 @@ class Database:
             result = self.cur.fetchall()
         return result
 
-    def list_students(self,variable, variable1):
+    def list_grade(self, variable):
+        q = request.args.get('q')
+        if q:
+            self.cur.execute(f"select * from Grades where Teacher_id='{q}' or Subject_name='{q}'")
+            result = self.cur.fetchall()
+            if result:
+                pass
+            else:
+                self.cur.execute(f"select * from Grades where Grade={q}")
+                result = self.cur.fetchall()
+        else:
+            self.cur.execute(f"select * from Grades where Student_id='{variable}'")
+            result = self.cur.fetchall()
+        return result
+
+    def list_students(self, variable, variable1):
         self.cur.execute(f"select * from Students where Year = {variable} and Group_id = {variable1}")
         result = self.cur.fetchall()
         return result
@@ -77,7 +92,7 @@ def login():
         if res:
             return redirect(url_for("preview"))
         else:
-            return "<h1>WRONG</h1>"
+            return "<h1>WRONG <a href='login'> TRY again</a></h1>"
     else:
         return render_template("login.html")
 
@@ -134,6 +149,15 @@ def groups(variable):
         return product
     res = db_query()
     return render_template("group.html", result =res)
+
+@app.route('/grade/<variable>', methods=['GET','POST'])
+def grade(variable):
+    def db_query():
+        db = Database()
+        product = db.list_grade(variable)
+        return product
+    res = db_query()
+    return render_template("grade.html", result =res)
 
 if __name__ == '__main__':
    app.run(debug = True)
