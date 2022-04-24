@@ -22,8 +22,18 @@ class Database:
         result = self.cur.fetchall()
         return result
     def list_student(self):
-        self.cur.execute("select * from Students;")
-        result = self.cur.fetchall()
+        q = request.args.get('q')
+        if q:
+            self.cur.execute(f"select * from Students where Student_id='{q}' or Name='{q}'")
+            result = self.cur.fetchall()
+            if result:
+                pass
+            else:
+                self.cur.execute(f"select * from Students where Group_id='{q}'  or Year={q}")
+                result = self.cur.fetchall()
+        else:
+            self.cur.execute("select * from Students;")
+            result = self.cur.fetchall()
         return result
 
 
