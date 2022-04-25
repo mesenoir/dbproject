@@ -28,7 +28,7 @@ class Database:
         return result
 
     def get_login(self, name, pas):
-        self.cur.execute(f"select * from Students where Name='{name}' and Pass='{pas}';")
+        self.cur.execute(f"select * from Students where Student_id='{name}' and Pass='{pas}';")
         result = self.cur.fetchall()
         return result
     def list_student(self):
@@ -92,7 +92,7 @@ def login():
         if res:
             return redirect(url_for("preview"))
         else:
-            return "<h1>WRONG <a href='login'> TRY again</a></h1>"
+            return redirect(url_for("login"))
     else:
         return render_template("login.html")
 
