@@ -17,6 +17,16 @@ class Database:
         result = self.cur.fetchall()
         return result
 
+    def list_library(self):
+        self.cur.execute("SELECT Title,Book_id,Year FROM Library;")
+        result = self.cur.fetchall()
+        return result
+
+    def list_activity(self):
+        self.cur.execute("SELECT Title,Book_id,Year FROM Library;")
+        result = self.cur.fetchall()
+        return result
+
     def list_groups(self, variable):
         self.cur.execute(f"SELECT * from Year where Year = {variable};")
         result = self.cur.fetchall()
@@ -133,13 +143,22 @@ def student():
     return render_template("student.html", result=res)
 
 @app.route('/library')
-def student():
+def library():
     def db_query():
         db = Database()
-        library = db.list_student()
-        return library
+        lib = db.list_library()
+        return lib
     res = db_query()
     return render_template("library.html", result=res)
+
+@app.route('/activity')
+def activity():
+    def db_query():
+        db = Database()
+        lib = db.list_activity()
+        return lib
+    res = db_query()
+    return render_template("activity.html", result=res)
 
 @app.route('/students/<variable>/<variable1>', methods=['GET','POST'])
 def students(variable, variable1):

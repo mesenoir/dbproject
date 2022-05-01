@@ -1,10 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/html">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Library</title>
 </head>
 <body>
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-green" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="preview" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="contact" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact</a>
+    <a href="about" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About us</a>
+  </div>
+
+    <div class="w3-container">
+  <hr>
+  <div class="w3-center">
+    <h2>Library</h2>
+  </div>
+<div class="w3-responsive w3-card-4">
+<table class="w3-table w3-striped w3-bordered">
+<thead>
+<tr class="w3-theme">
+  <th>TITLE</th>
+  <th>BOOK_ID</th>
+  <th>YEAR</th>
+</tr>
+</thead>
+
+<tbody>
+    {% if result %}
+    {% for row in result %}
+        <tr>
+            <td>{{row.Title}}</td>
+            <td>{{row.Book_id}}</td>
+            <td>{{row.Year}}</td>
+        </tr>
+    {% endfor %}
+        </tbody>
+        </table>
+    {% endif %}
 
 </body>
 </html>
