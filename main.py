@@ -132,6 +132,15 @@ def student():
     res = db_query()
     return render_template("student.html", result=res)
 
+@app.route('/library')
+def student():
+    def db_query():
+        db = Database()
+        library = db.list_student()
+        return library
+    res = db_query()
+    return render_template("library.html", result=res)
+
 @app.route('/students/<variable>/<variable1>', methods=['GET','POST'])
 def students(variable, variable1):
     def db_query():
