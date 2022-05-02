@@ -23,7 +23,7 @@ class Database:
         return result
 
     def list_activity(self):
-        self.cur.execute("SELECT Title,Book_id,Year FROM Library;")
+        self.cur.execute("SELECT Activity_id, Student_id, Teacher_id FROM Activity;")
         result = self.cur.fetchall()
         return result
 
@@ -37,10 +37,16 @@ class Database:
         result = self.cur.fetchall()
         return result
 
-    def get_login(self, name, pas):
+    def get_login_student(self, name, pas):
         self.cur.execute(f"select * from Students where Student_id='{name}' and Pass='{pas}';")
         result = self.cur.fetchall()
         return result
+
+    def get_login_teacher(self, name, pas):
+        self.cur.execute(f"select * from Teachers where Teacher_id='{name}' and Pass='{pas}';")
+        result = self.cur.fetchall()
+        return result
+
     def list_student(self):
         q = request.args.get('q')
         if q:
@@ -91,16 +97,28 @@ def contact():
 
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
-    def db_query(name,pas):
+    def db_query_student(name,pas):
         db = Database()
-        auth = db.get_login(name,pas)
-        return auth
+        auth_student = db.get_login_student(name,pas)
+        return auth_student
+    def db_query_teacher(name,pas):
+        db = Database()
+        auth_teacher = db.get_login_teacher(name,pas)
+        return auth_teacher
     if request.method == "POST":
         user = request.form["nm"]
         password = request.form["password"]
-        res = db_query(user,password)
-        if res:
+        res_student = db_query_student(user,password)
+        res_teacher = db_query_teacher(user,password)
+        if res_teacher:
             return redirect(url_for("preview"))
+        elif res_student:
+            def db_query():
+                db = Database()
+                product = db.list_grade(user)
+                return product
+            res = db_query()
+            return render_template("grade.html", result=res)
         else:
             return redirect(url_for("login"))
     else:

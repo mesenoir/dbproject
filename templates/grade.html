@@ -141,19 +141,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <th>GRADE</th>
     </tr>
     </thead>
-
-        {% for row in result %}
-                <div class="topnav">
-                  <div class="search-container">
-                    <form action="/grade/{{row.Student_id}}" method="GET">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Search.." name="q">
-                      <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                  </div>
-                </div>
+         <div class="topnav">
                 <div style="padding-left:16px">
                 </div>
                 <h1>Grades</h1>
+
+        {% for row in result %}
             <tr>
                 <td>{{row.Student_id}}</td>
                 <td>{{row.Teacher_id}}</td>
